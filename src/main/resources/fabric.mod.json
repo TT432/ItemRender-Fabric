@@ -1,0 +1,31 @@
+{
+  "schemaVersion": 1,
+  "id": "item_render_fabric",
+  "version": "${version}",
+  "name": "Item Render Fabric",
+  "description": "",
+  "license": "GPL",
+  "contact": {
+  },
+  "environment": "*",
+  "entrypoints": {
+    "main": [
+      "com.nmmoc7.item_render_fabric.ItemRenderFabric"
+    ],
+    "client": [
+
+    ]
+  },
+  "mixins": [
+  ],
+  "depends": {
+    "fabricloader": ">=0.6.3"
+  },
+  "authors": [
+    "DustW"
+  ],
+  "contributors": [
+  ],
+  "custom": {
+  }
+}
