@@ -1,15 +1,8 @@
-//
-// Source code recreated from a .class file by IntelliJ IDEA
-// (powered by FernFlower decompiler)
-//
-
-package com.nmmoc7.item_render_fabric.export;
+package com.nmmoc7.item_export.exporter;
 
 import com.mojang.blaze3d.systems.RenderSystem;
-import com.nmmoc7.item_render_fabric.ItemRenderFabric;
 import net.minecraft.client.util.GlAllocationUtils;
 import org.apache.commons.codec.binary.Base64;
-import org.apache.logging.log4j.Level;
 import org.lwjgl.BufferUtils;
 import org.lwjgl.opengl.EXTFramebufferObject;
 import org.lwjgl.opengl.GL11;
@@ -39,7 +32,6 @@ public final class FBOHelper {
     }
 
     void begin() {
-        checkGlErrors("FBO Begin Init");
         this.lastFramebuffer = GL11.glGetInteger(36006);
         EXTFramebufferObject.glBindFramebufferEXT(36160, this.framebufferID);
         this.lastViewport = GlAllocationUtils.allocateByteBuffer(64).asIntBuffer();
@@ -55,11 +47,9 @@ public final class FBOHelper {
         RenderSystem.enableDepthTest();
         RenderSystem.enableLighting();
         RenderSystem.enableRescaleNormal();
-        checkGlErrors("FBO Begin Final");
     }
 
     void end() {
-        checkGlErrors("FBO End Init");
         GL11.glCullFace(1029);
         RenderSystem.disableDepthTest();
         RenderSystem.disableRescaleNormal();
@@ -69,7 +59,6 @@ public final class FBOHelper {
         GL11.glViewport(this.lastViewport.get(0), this.lastViewport.get(1), this.lastViewport.get(2), this.lastViewport.get(3));
         EXTFramebufferObject.glBindFramebufferEXT(36160, this.lastFramebuffer);
         RenderSystem.bindTexture(this.lastTexture);
-        checkGlErrors("FBO End Final");
     }
 
     void restoreTexture() {
@@ -94,7 +83,6 @@ public final class FBOHelper {
             ImageIO.write(image, "png", file);
         } catch (Exception ignored) {
         }
-
     }
 
     String getBase64(boolean flip) {
@@ -154,14 +142,5 @@ public final class FBOHelper {
         EXTFramebufferObject.glFramebufferRenderbufferEXT(36160, 36096, 36161, depthbufferID);
         EXTFramebufferObject.glFramebufferTexture2DEXT(36160, 36064, 3553, this.textureID, 0);
         EXTFramebufferObject.glBindFramebufferEXT(36160, currentFramebuffer);
-    }
-
-    private static void checkGlErrors(String message) {
-        int error = GL11.glGetError();
-        if (error != 0) {
-            ItemRenderFabric.logger.log(Level.ERROR, "########## GL ERROR ##########");
-            ItemRenderFabric.logger.log(Level.ERROR, "@ " + message + ": " + error);
-        }
-
     }
 }
