@@ -1,7 +1,7 @@
 {
   "required": true,
   "minVersion": "0.8",
-  "package": "com.nmmoc7.item_render_fabric.mixin",
+  "package": "com.nmmoc7.item_export.mixin",
   "compatibilityLevel": "JAVA_8",
   "mixins": [
   ],

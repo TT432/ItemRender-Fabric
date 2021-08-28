@@ -1,8 +1,8 @@
 {
   "schemaVersion": 1,
-  "id": "item_render_fabric",
+  "id": "item_export",
   "version": "${version}",
-  "name": "Item Render Fabric",
+  "name": "Item Export",
   "description": "",
   "license": "GPL",
   "contact": {
@@ -10,7 +10,7 @@
   "environment": "*",
   "entrypoints": {
     "main": [
-      "com.nmmoc7.item_render_fabric.ItemRenderFabric"
+      "com.nmmoc7.item_export.ItemExport"
     ],
     "client": [
 
@@ -19,7 +19,8 @@
   "mixins": [
   ],
   "depends": {
-    "fabricloader": ">=0.6.3"
+    "fabricloader": ">=0.6.3",
+    "fabric": ""
   },
   "authors": [
     "DustW"
