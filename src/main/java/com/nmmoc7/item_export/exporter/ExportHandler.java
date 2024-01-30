@@ -22,22 +22,20 @@ public class ExportHandler {
     }
 
     public void exportItem(String modId, NameHelper.ModItems modItems) {
-        File fileDir = new File("export\\");
+        File fileDir = new File("export");
 
-        if (!fileDir.exists()) {
+        if (!fileDir.exists())
             fileDir.mkdirs();
-        }
 
         try {
-            StringBuilder builder = new StringBuilder("export\\");
-            File export = new File(String.format(builder.append(modId).append("_item.json").toString(), modId.replaceAll("[^A-Za-z0-9()\\[\\]]", "")));
-            if (!export.getParentFile().exists()) {
-                export.getParentFile().mkdirs();
-            }
+            if (!fileDir.isDirectory())
+                throw new IOException("Cannot create export directory: File exists");
 
-            if (!export.exists()) {
+            StringBuilder builder = new StringBuilder(modId);
+            File export = new File(fileDir, String.format(builder.append("_item.json").toString(), modId.replaceAll("[^A-Za-z0-9()\\[\\]]", "")));
+
+            if (!export.exists())
                 export.createNewFile();
-            }
 
             PrintWriter pw = new PrintWriter(export, "UTF-8");
 
